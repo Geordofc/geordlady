@@ -1,0 +1,1141 @@
+
+@font-face {
+  font-family: 'Inter Black';
+  src: url('path/to/Inter-Black.woff2') format('woff2'),
+       url('path/to/Inter-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start; /* Posisi elemen di atas */
+  justify-content: flex-start; /* Posisi elemen ke kiri */
+  background-size: 200%; /* Zoom 90% */
+  filter: blur(100%); /* Blur 70px */
+  height: 100vh;
+  display: flex;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+#background {
+position: fixed;
+top: 50%;
+left: 50%;
+width: 300%; /* Ukuran lebih besar dari layar */
+height: 300%; /* Ukuran lebih besar dari layar */
+background: url('file/lady_killer.jpg') no-repeat center center;
+background-size: contain; /* Pastikan gambar mengisi elemen */
+filter: blur(80px) saturate(150%) contrast(150%) brightness(50%);
+transform: translate(-50%, -50%) rotate(0deg); /* Posisikan di tengah */
+transform-origin: center; /* Rotasi dari tengah */
+z-index: -1; /* Pastikan berada di belakang konten */
+animation: spin-bg 20s linear infinite; /* Animasi rotasi */
+}
+
+/* Keyframes untuk rotasi background */
+@keyframes spin-bg {
+from {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+to {
+    transform: translate(-50%, -50%) rotate(360deg);
+}
+}
+
+.popup-close {
+
+top: 20px;
+right: 40px;
+width: 70px; /* Perbesar lebar */
+height: 70px; /* Perbesar tinggi */
+background: url('file/silang.png') no-repeat center center;
+background-size: contain; /* Gambar akan menyesuaikan dengan ukuran elemen */
+border: none;
+cursor: pointer;
+}
+
+.music-player {
+  position: fixed; /* Tetap di posisi saat di-scroll */
+  bottom: 5px; /* Jarak dari bawah */
+  left: 22%; /* Posisikan di tengah horizontal */
+  transform: translateX(-50%); /* Geser ke kiri 50% dari lebarnya untuk center alignment */
+  margin: 0; /* Hilangkan margin yang tidak perlu */
+  background: rgba(255, 255, 255, 0); /* Transparan dengan sedikit warna */
+  border-radius: 20px;
+  padding: 20px;
+  width: 31%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 999; /* Pastikan berada di atas elemen lain */
+}
+
+
+.lukaku {
+  position: fixed; /* Tetap di posisi saat di-scroll */
+  bottom: 8vw; /* Jarak dari bawah */
+  left: 6.5%;
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  margin: 8vh 1.5vh;
+  z-index: 0;
+}
+
+.album-art img {
+  width: 100%;
+  border-radius: 2%;
+  left: 0;
+  
+}
+.close-btn {
+
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+
+/* Desktop: Sembunyikan duplikat kontrol */
+.mobile-controls {
+  display: none;
+}
+
+
+
+
+.track-info {
+  display: flex;
+  flex-direction: column; /* Menyusun elemen dalam kolom */
+  gap: 0px; /* Menambahkan jarak antar elemen */
+}
+
+.track-title {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Menjaga jarak antar elemen h2 dan ikon */
+}
+
+.likesave {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  right: 0;
+  position: absolute; /* Ensures it stays in the correct position */
+  z-index: 1; /* Ensure it's above the track title */
+}
+
+.track-title h2 {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
+  text-overflow: ellipsis; /* Adds "..." if the text overflows */
+  overflow: hidden; /* Ensures the text doesn't overflow outside the container */
+  transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+
+.track-info p {
+  margin: 0px 0 0;
+  font-size: 14px;
+  color: #cccccc;
+  text-align: left;
+  margin-left: 1px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.volume-bar {
+display: flex; /* Susun elemen horizontal */
+align-items: center; /* Pastikan slider dan icon sejajar */
+gap: 0px; /* Jarak horizontal antara icon dan slider */
+margin: 10px 0;
+}
+
+.volume-bar .slider {
+flex: 1; /* Buat slider mengisi ruang yang tersisa */
+appearance: none;
+background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
+height: 4px;
+border-radius: 2px;
+outline: none;
+cursor: pointer;
+}
+
+.volume-bar .volume-container {
+display: flex; 
+align-items: center; /* Posisikan icon tepat di tengah secara vertikal */
+justify-content: center;
+width: 30px; /* Sesuaikan lebar box transparan dengan ukuran icon */
+height: 30px; /* Sesuaikan tinggi box transparan */
+}
+
+.volume-bar .loop-icon {
+width: 16px; /* Ukuran icon */
+height: 16px;
+cursor: pointer; /* Menampilkan pointer jika diklik */
+}
+
+
+/* Gaya tambahan untuk slider */
+.slider::-webkit-slider-thumb {
+appearance: none;
+width: 12px;
+height: 12px;
+background: #ffffff;
+border-radius: 50%;
+cursor: pointer;
+border: 2px solid #000000;
+}
+
+.slider::-moz-range-thumb {
+width: 12px;
+height: 12px;
+background: #ffffff;
+border-radius: 50%;
+cursor: pointer;
+border: 2px solid #000000;
+}
+
+.slider::-ms-thumb {
+width: 12px;
+height: 12px;
+background: #ffffff;
+border-radius: 50%;
+cursor: pointer;
+border: 2px solid #000000;
+}
+
+
+
+.progress-bar {
+  display: flex;
+  flex-direction: column; /* Tumpuk elemen secara vertikal */
+  align-items: center;
+  margin: 0px 0;
+  margin-bottom: 10px;
+}
+
+.progress-bar .slider {
+  width: 100%; /* Pastikan slider menyesuaikan ukuran */
+  appearance: none;
+  background: linear-gradient(to right, #ffffff 0%, #eef3f8 0%);
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 10px; /* Jarak antara slider dan timer */
+}
+
+.progress-bar .time-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Sesuaikan dengan lebar slider */
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #ffffff; /* Thumb dengan latar belakang transparan */
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #00000000; /* Border untuk thumb agar terlihat kontras */
+}
+
+.slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #000000;
+}
+
+.slider::-ms-thumb {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #000000;
+}
+
+
+
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px; /* Jarak antar tombol */
+}
+
+.control-btn {
+  margin: 0 -6px; /* Menambahkan margin horizontal (kiri dan kanan) agar tombol-tombol berdekatan */
+  padding: 0px; /* Opsional, untuk mengatur jarak dalam tombol */
+  background: none; /* Pastikan latar belakang tombol transparan */
+  border: none; /* Menghapus border tombol */
+  cursor: pointer; /* Menampilkan cursor pointer saat hover */
+}
+
+.control-btn img {
+  width: 32px; /* Ukuran tombol kecil */
+  height: 24px;
+  transition: transform 0.2s;
+}
+
+.play-btn img {
+  width: 140px; /* Ukuran tombol Play lebih besar */
+  height: 90px;
+  transition: transform 0.2s;
+}
+
+/* Styling khusus untuk tombol shuffle */
+#shuffle img[src="file/shuffle.png"] {
+  width: 60px; /* Atur ukuran gambar panah kanan */
+  height: 50px;
+}
+
+/* Styling khusus untuk tombol panah kiri */
+#left img[src="file/arrow_right.png"] {
+  width: 80px; /* Atur ukuran gambar panah kanan */
+  height: 50px;
+  transform: scaleX(-1);
+}
+
+/* Styling khusus untuk tombol panah kanan */
+#right img[src="file/arrow_right.png"] {
+  width: 80px; /* Atur ukuran gambar panah kanan */
+  height: 50px;
+}
+
+/* Styling khusus untuk tombol repeat */
+#loop img[src="file/loop.png"] {
+  width: 60px; /* Atur ukuran gambar panah kanan */
+  height: 50px;
+}
+
+/* Atur ulang tombol */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+.play-btn {
+  background: #ffffff00;
+  color: #020137;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+
+
+.ui-like {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 5px;
+  --icon-size: 22px;
+  --icon-secondary-color: rgb(255, 255, 255);
+  --icon-hover-color: rgb(211, 205, 205);
+  --icon-primary-color: rgb(230, 26, 26);
+  --icon-circle-border: 1px solid var(--icon-primary-color);
+  --icon-circle-size: 35px;
+  --icon-anmt-duration: 0.3s;
+}
+
+.ui-like input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.ui-like .like {
+  width: var(--icon-size);
+  height: auto;
+  fill: var(--icon-secondary-color);
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+}
+
+.like::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  -webkit-box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+    30px 0 0 -4px var(--icon-primary-color),
+    0 -30px 0 -4px var(--icon-primary-color),
+    -30px 0 0 -4px var(--icon-primary-color),
+    -22px 22px 0 -4px var(--icon-primary-color),
+    -22px -22px 0 -4px var(--icon-primary-color),
+    22px -22px 0 -4px var(--icon-primary-color),
+    22px 22px 0 -4px var(--icon-primary-color);
+  box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+    30px 0 0 -4px var(--icon-primary-color),
+    0 -30px 0 -4px var(--icon-primary-color),
+    -30px 0 0 -4px var(--icon-primary-color),
+    -22px 22px 0 -4px var(--icon-primary-color),
+    -22px -22px 0 -4px var(--icon-primary-color),
+    22px -22px 0 -4px var(--icon-primary-color),
+    22px 22px 0 -4px var(--icon-primary-color);
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+
+.like::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: var(--icon-circle-border);
+  opacity: 0;
+}
+
+/* actions */
+
+.ui-like:hover .like {
+  fill: var(--icon-hover-color);
+}
+
+.ui-like input:checked + .like::after {
+  -webkit-animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: var(--icon-anmt-duration);
+  animation-delay: var(--icon-anmt-duration);
+}
+
+.ui-like input:checked + .like {
+  fill: var(--icon-primary-color);
+  -webkit-animation: like var(--icon-anmt-duration) forwards;
+  animation: like var(--icon-anmt-duration) forwards;
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.ui-like input:checked + .like::before {
+  -webkit-animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: var(--icon-anmt-duration);
+  animation-delay: var(--icon-anmt-duration);
+}
+
+@-webkit-keyframes like {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@keyframes like {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@-webkit-keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  90% {
+    width: var(--icon-circle-size);
+    height: var(--icon-circle-size);
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  90% {
+    width: var(--icon-circle-size);
+    height: var(--icon-circle-size);
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+/*------ Settings ------*/
+.container {
+  margin-left: 15px;
+  --color: #ffffff;
+  --size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+}
+
+.container .save-regular {
+  position: absolute;
+  animation: keyframes-fill .5s;
+  transform-origin: top;
+}
+
+.container .save-solid {
+  position: absolute;
+  animation: keyframes-fill .5s;
+  display: none;
+  transform-origin: top;
+}
+
+/* ------ On check event ------ */
+.container input:checked ~ .save-regular {
+  display: none;
+}
+
+.container input:checked ~ .save-solid {
+  display: block;
+}
+
+/* ------ Hide the default checkbox ------ */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+
+/* ------ Animation ------ */
+@keyframes keyframes-fill {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scaleY(1.2);
+  }
+}
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.lyrics-container {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900; /* Menggunakan versi Black */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48%; /* Memperbesar lebar box */
+  height: 90vh; /* Mengecilkan tinggi box */
+  max-width: 800px; /* Maksimal lebar box */
+  margin: 0 auto; /* Pusatkan secara horizontal */
+  text-align: center;
+  font-size: 18px;
+  color: #ffffff;
+  flex-wrap: wrap;
+  overflow: hidden; /* Mencegah overflow */
+  position: absolute; /* Menggunakan absolute positioning */
+  top: 50%; /* Memindahkan ke tengah vertikal */
+  left: 63.7%; /* Pindahkan sedikit ke kanan dari tengah */
+  transform: translate(-50%, -50%); /* Menyesuaikan agar benar-benar di tengah secara vertikal */
+  background: rgba(111, 0, 255, 0); /* Tambahkan latar belakang transparan */
+  border: 2px solid #ffffff00; /* Border untuk box */
+  border-radius: 10px; /* Radius jika diinginkan */
+  max-height: 100%;
+  overflow-y: scroll; /* Tambahkan scroll manual */
+  scroll-behavior: smooth; /* Transisi halus saat di-scroll */
+  transition: transform 0.4s ease-out; /* Animasi untuk auto-scroll */
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent); /* Untuk kompatibilitas dengan Webkit */
+  mask-size: 100% 100%; /* Pastikan mask menutupi seluruh elemen */
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+
+}
+
+
+.lyrics p {
+margin: 15px 0;
+cursor: pointer; /* Tambahkan pointer untuk menandakan bisa diklik */
+opacity: 0.5;
+transition: opacity 0.3s, font-weight 0.3s;
+text-align: left;
+flex-wrap: wrap;
+}
+
+.lyrics p:hover {
+opacity: 0.7; /* Umpan balik visual saat hover */
+}
+
+.lyrics p.active {
+opacity: 1;
+font-weight: bold;
+color: hsl(0, 0%, 100%); /* Warna sorotan */
+}
+
+.lyrics-container::before {
+  top: 0; /* Shadow di atas */
+}
+
+.lyrics-container::after {
+  bottom: 0; /* Shadow di bawah */
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.5),
+      transparent
+  ); /* Shadow dari bawah ke atas */
+}
+
+
+.lyrics {
+  margin-left: 50px;
+  max-height: 100%; /* Membatasi tinggi container lirik */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 32px;
+  position: relative; /* Pastikan relative untuk perhitungan offset */
+  transition: transform 0.3s ease-out; /* Tambahkan animasi scrolling */
+}
+
+
+
+.lyrics p {
+  margin: 15px 0;
+  cursor: pointer; /* Tambahkan pointer untuk menandakan bisa diklik */
+  opacity: 0.5;
+  transition: opacity 0.3s, font-weight 0.3s;
+  text-align: left;
+}
+
+.lyrics p:hover {
+opacity: 0.7; /* Umpan balik visual saat hover */
+}
+
+.lyrics p.active {
+  opacity: 1;
+  font-weight: bold;
+  color: hsla(0, 0%, 100%, 0.938); /* Warna sorotan */
+}
+
+.kotak {
+  
+  background-color: rgb(55, 0, 255);
+  max-width: 100%; /* Agar tidak melebihi lebar layar */
+  width: auto;
+}
+
+.line {
+  position: relative;
+  width: max-content;
+}
+
+.line::after {
+  content: '';
+  background: rgb(255, 255, 255);
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  align-items: center;
+  left: 0;
+  top: -10px;
+  transition: 700ms;
+}
+
+.line:hover::after {
+  width: 0;
+}
+
+@media only screen and (max-width: 1100px) {
+  .popup-close {
+      display: none;
+    }
+  
+  .music-player {
+    position: fixed; /* Tetap di posisi saat di-scroll */
+    bottom: 5px; /* Jarak dari bawah */
+    left: 50%; /* Posisikan di tengah horizontal */
+    transform: translateX(-50%); /* Geser ke kiri 50% dari lebarnya untuk center alignment */
+    margin: 0; /* Hilangkan margin yang tidak perlu */
+    background: rgba(255, 255, 255, 0); /* Transparan dengan sedikit warna */
+    border-radius: 20px;
+    padding: 20px;
+    width: 88%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 999; /* Pastikan berada di atas elemen lain */
+  }
+
+  .lukaku {
+    position: fixed; /* Tetap di posisi saat di-scroll */
+
+    left: 0;
+    display: flex;
+    flex-direction: row; /* Ubah jadi sejajar (horizontal) */
+    align-items: center; /* Tengahkan elemen secara vertikal */
+    padding: 0;
+    width: 100%;
+    max-width: 90%;
+    z-index: 5;
+    position: relative;
+  }
+
+  .album-art {
+    flex: 0 0 80px; /* Lebar tetap untuk gambar album */
+    width: 100%;
+  }
+
+  .album-art img {
+    width: 100%;
+    border-radius: 2%;
+  }
+
+  .track-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Posisi judul dan teks ke kiri */
+    gap: 0px;
+    position: relative;
+
+  }
+
+  .track-title {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    gap: 15vh !important;
+    position: relative; /* To ensure the text stays in the correct position */
+    margin-right: 0px; /* Create space for the likesave section on the right */
+  }
+  
+
+  .track-title h2 {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap; /* Prevents text from wrapping to the next line */
+    text-overflow: ellipsis; /* Adds "..." if the text overflows */
+    overflow: hidden; /* Ensures the text doesn't overflow outside the container */
+    transition: opacity 0.3s ease; /* Smooth opacity transition */
+    margin: 0;
+  }
+
+  .likesave {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* Position it relative to the track-info container */
+    right: 0; /* Align to the right edge */
+    top: 0; /* Align to the top edge */
+    z-index: 0; /* Ensure it stays above the title */
+  }
+
+  .track-info p {
+    font-size: 12px;
+    color: #cccccc;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .poster {
+    width: 20%;
+    margin: 10vw 5vw;
+  }
+
+    /* Mengatur Progress Bar, Controls, dan Volume Bar di bawah Lyrics */
+    .volume-bar {
+      display: flex; /* Susun elemen horizontal */
+      align-items: center; /* Pastikan slider dan icon sejajar */
+      gap: 0px; /* Jarak horizontal antara icon dan slider */
+      margin: 10px 0;
+      }
+      
+      .volume-bar .slider {
+      flex: 1; /* Buat slider mengisi ruang yang tersisa */
+      appearance: none;
+      background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
+      height: 4px;
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+      }
+      
+      .volume-bar .volume-container {
+      display: flex; 
+      align-items: center; /* Posisikan icon tepat di tengah secara vertikal */
+      justify-content: center;
+      width: 30px; /* Sesuaikan lebar box transparan dengan ukuran icon */
+      height: 30px; /* Sesuaikan tinggi box transparan */
+      }
+      
+      .volume-bar .loop-icon {
+      width: 16px; /* Ukuran icon */
+      height: 16px;
+      cursor: pointer; /* Menampilkan pointer jika diklik */
+      }
+      
+      
+      /* Gaya tambahan untuk slider */
+      .slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #000000;
+      }
+      
+      .slider::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #000000;
+      }
+      
+      .slider::-ms-thumb {
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #000000;
+      }
+      
+      
+      
+      .progress-bar {
+        display: flex;
+        flex-direction: column; /* Tumpuk elemen secara vertikal */
+        align-items: center;
+        margin: 0px 0;
+        margin-bottom: 10px;
+      }
+      
+      .progress-bar .slider {
+        width: 100%; /* Pastikan slider menyesuaikan ukuran */
+        appearance: none;
+        background: linear-gradient(to right, #ffffff 0%, #eef3f8 0%);
+        height: 4px;
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+        margin-bottom: 10px; /* Jarak antara slider dan timer */
+      }
+      
+      .progress-bar .time-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Sesuaikan dengan lebar slider */
+        font-size: 10px;
+        color: #ffffff;
+      }
+      
+      .slider::-webkit-slider-thumb {
+        appearance: none;
+        width: 12px;
+        height: 12px;
+        background: #ffffff; /* Thumb dengan latar belakang transparan */
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid #00000000; /* Border untuk thumb agar terlihat kontras */
+      }
+      
+      .slider::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+        background: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid #000000;
+      }
+      
+      .slider::-ms-thumb {
+        width: 10px;
+        height: 10px;
+        background: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid #000000;
+      }
+      
+
+      
+      
+      .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1px; /* Jarak antar tombol */
+      }
+      
+      .control-btn {
+        margin: 0 -6px; /* Menambahkan margin horizontal (kiri dan kanan) agar tombol-tombol berdekatan */
+        padding: 0px; /* Opsional, untuk mengatur jarak dalam tombol */
+        background: none; /* Pastikan latar belakang tombol transparan */
+        border: none; /* Menghapus border tombol */
+        cursor: pointer; /* Menampilkan cursor pointer saat hover */
+      }
+      
+      .control-btn img {
+        width: 32px; /* Ukuran tombol kecil */
+        height: 24px;
+        transition: transform 0.2s;
+      }
+      
+      .play-btn img {
+        width: 140px; /* Ukuran tombol Play lebih besar */
+        height: 90px;
+        transition: transform 0.2s;
+      }
+      
+      /* Styling khusus untuk tombol shuffle */
+      #shuffle img[src="file/shuffle.png"] {
+        width: 60px; /* Atur ukuran gambar panah kanan */
+        height: 50px;
+      }
+      
+      /* Styling khusus untuk tombol panah kiri */
+      #left img[src="file/arrow_right.png"] {
+        width: 80px; /* Atur ukuran gambar panah kanan */
+        height: 50px;
+        transform: scaleX(-1);
+      }
+      
+      /* Styling khusus untuk tombol panah kanan */
+      #right img[src="file/arrow_right.png"] {
+        width: 80px; /* Atur ukuran gambar panah kanan */
+        height: 50px;
+      }
+      
+      /* Styling khusus untuk tombol repeat */
+      #loop img[src="file/loop.png"] {
+        width: 60px; /* Atur ukuran gambar panah kanan */
+        height: 50px;
+      }
+      
+      /* Atur ulang tombol */
+      button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+      
+      
+      .play-btn {
+        background: #ffffff00;
+        color: #020137;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      
+      .lyrics-container {
+        font-family: 'Inter', sans-serif;
+        font-weight: 900; /* Menggunakan versi Black */
+        display: flex;
+        align-items: center; /* Menyusun konten ke kiri */
+        justify-content: center; /* Menyusun konten mulai dari atas */
+        width: 100%; /* Lebar box */
+        height: 50vh; /* Tinggi box */
+        max-width: 800px; /* Maksimal lebar box */
+        margin: 0; /* Menghapus margin */
+        padding: 0; /* Menghapus padding */
+        text-align: left; /* Teks rata kiri */
+        color: #ffffff;
+        overflow: hidden; /* Mencegah overflow */
+    
+        top: 45%; /* Center the element vertically */
+        left: 50%; /* Center the element horizontally */
+        transform: translate(-50%, -50%); /* Adjusts for exact centering */
+        background: rgba(111, 0, 255, 0); /* Background transparan */
+        border: 2px solid #cc292900; /* Border transparan */
+        border-radius: 1px; /* Radius border */
+        max-height: 100%;
+        overflow-y: scroll; /* Scroll vertikal */
+        flex-wrap: wrap;
+        scroll-behavior: smooth;
+        transition: transform 0.4s ease-out;
+        mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+      }
+      
+      
+      .lyrics {
+        margin-left: 0px;
+        max-height: 100%; /* Membatasi tinggi container lirik */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 32px;
+        margin: 3vh;
+        position: relative; /* Pastikan relative untuk perhitungan offset */
+        transition: transform 0.3s ease-out; /* Tambahkan animasi scrolling */
+      }
+      
+      .lyrics p {
+        margin: 15px 0;
+        cursor: pointer; /* Tambahkan pointer untuk menandakan bisa diklik */
+        opacity: 0.5;
+        transition: opacity 0.3s, font-weight 0.3s;
+        text-align: left;
+        flex-wrap: wrap;
+      }
+      
+      .lyrics p:hover {
+      opacity: 0.7; /* Umpan balik visual saat hover */
+      }
+      
+      .lyrics p.active {
+        opacity: 1;
+        font-weight: bold;
+        color: hsla(0, 0%, 100%, 0.938); /* Warna sorotan */
+      }
+      
+      .kotak {
+        
+        background-color: rgb(55, 0, 255);
+        max-width: 100%; /* Agar tidak melebihi lebar layar */
+        width: auto;
+      }
+      
+      .line {
+        position: relative;
+        width: max-content;
+      }
+      
+      .line::after {
+        content: '';
+        background: rgb(255, 255, 255);
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        align-items: center;
+        left: 0;
+        top: -10px;
+        transition: 700ms;
+      }
+      
+      .line:hover::after {
+        width: 0;
+      }
+    
+}
+
